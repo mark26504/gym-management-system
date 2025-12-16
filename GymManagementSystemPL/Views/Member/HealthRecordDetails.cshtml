@@ -1,0 +1,75 @@
+﻿@model HealthViewModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary-color text-white text-center py-4">
+                    <h3 class="mb-1">Health Record</h3>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light p-4 h-100">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="bg-primary-color rounded-circle p-2 me-3"
+                                         style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                        <span class="text-white fw-bold">H</span>
+                                    </div>
+                                    <h6 class="text-muted mb-0">Height</h6>
+                                </div>
+                                <h4 class="text-primary-color mb-0">@Model.Height<small>cm</small></h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light p-4 h-100">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="bg-primary-color rounded-circle p-2 me-3"
+                                         style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                        <span class="text-white fw-bold">W</span>
+                                    </div>
+                                    <h6 class="text-muted mb-0">Weight</h6>
+                                </div>
+                                <h4 class="text-primary-color mb-0">@Model.Weight <small>kg</small></h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light p-4 h-100">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="bg-danger rounded-circle p-2 me-3"
+                                         style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                        <span class="text-white fw-bold">B</span>
+                                    </div>
+                                    <h6 class="text-muted mb-0">Blood Type</h6>
+                                </div>
+                                <h4 class="text-danger mb-0"> @Model.BloodType </h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light p-4 h-100">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="bg-warning rounded-circle p-2 me-3"
+                                         style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                        <span class="text-white fw-bold">N</span>
+                                    </div>
+                                    <h6 class="text-muted mb-0">Note</h6>
+                                </div>
+                                <h4 class="text-danger mb-0">@(string.IsNullOrEmpty(Model.Note) ? "No Note Found" : Model.Note)</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-white border-0 p-4">
+                        <div class="d-flex justify-content-between gap-2">
+                            <a asp-controller="Member" asp-action="Index"
+                               class="btn btn-fill flex-fill">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@model CreateSessionViewModel
+
+<div class="container mt-4">
+    <header class="mb-4">
+        <h3 class="text-primary-color">Create New Session</h3>
+        <p class="text-muted">Schedule a new training session</p>
+    </header>
+
+    <form asp-action="Create" method="post">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+
+                        <!-- Session Information -->
+                        <div class="section-header mb-3">
+                            <h5 class="text-primary fw-bold">Session Information</h5>
+                            <hr class="mt-2">
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="CategoryId" class="form-label fw-semibold">
+                                    Category <span class="text-danger">*</span>
+                                </label>
+                                <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-select">
+                                    <option value="">Select Category</option>
+                                </select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <label asp-for="TrainerId" class="form-label fw-semibold">
+                                    Trainer <span class="text-danger">*</span>
+                                </label>
+                                <select asp-for="TrainerId" asp-items="@ViewBag.Trainers" class="form-select">
+                                    <option value="">Select Trainer</option>
+                                </select>
+                                <span asp-validation-for="TrainerId" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Description" class="form-label fw-semibold">
+                                    Description <span class="text-danger">*</span>
+                                </label>
+                                <textarea asp-for="Description" class="form-control" rows="3"
+                                          placeholder="Describe the session content and objectives..."></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Capacity" class="form-label fw-semibold">
+                                    Capacity <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Capacity" type="number" class="form-control" placeholder="25" min="1" max="25" />
+                                <small class="text-muted">Maximum number of participants</small>
+                                <span asp-validation-for="Capacity" class="text-danger d-block"></span>
+                            </div>
+                        </div>
+
+                        <!-- Date & Time -->
+                        <div class="section-header mb-3">
+                            <h5 class="text-primary fw-bold">Date & Time</h5>
+                            <hr class="mt-2">
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="StartDate" class="form-label fw-semibold">
+                                    Start Date & Time <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="StartDate" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="EndDate" class="form-label fw-semibold">
+                                    End Date & Time <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="EndDate" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline">
+                                <i class="bi bi-arrow-left me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-fill">
+                                <i class="bi bi-check-lg me-1"></i>Create Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const startInput = document.querySelector('input[name="StartDate"]');
+            const endInput = document.querySelector('input[name="EndDate"]');
+
+            if (!startInput || !endInput) return;
+
+            const now = new Date();
+            const localNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+                .toISOString()
+                .slice(0, 16); // yyyy-MM-ddTHH:mm
+
+            startInput.min = localNow;
+            endInput.min = localNow;
+
+            if (!startInput.value || startInput.value.startsWith("0001")) {
+                startInput.value = localNow;
+            }
+            if (!endInput.value || endInput.value.startsWith("0001")) {
+                const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
+                const localOneHourLater = new Date(oneHourLater.getTime() - now.getTimezoneOffset() * 60000)
+                    .toISOString()
+                    .slice(0, 16);
+                endInput.value = localOneHourLater;
+            }
+
+            startInput.addEventListener("change", function () {
+                endInput.min = startInput.value;
+                if (endInput.value && endInput.value < startInput.value) {
+                    endInput.value = "";
+                }
+            });
+        });
+    </script>
+
+}

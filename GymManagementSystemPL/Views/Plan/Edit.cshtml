@@ -1,0 +1,69 @@
+﻿@model UpdatePlanViewModel
+
+
+<div class="container mt-4">
+    <header class="mb-4">
+        <h3 class="text-primary-color">Edit Plan</h3>
+        <p class="text-muted">Update plan details</p>
+    </header>
+
+    @Html.ValidationMessage("WrongData", new { @class = "text-danger" })
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="Name" class="form-label fw-semibold">
+                                    Plan Name <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Name" class="form-control" readonly />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="DurationDays" class="form-label fw-semibold">
+                                    Duration (Days) <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="DurationDays" type="number" class="form-control" />
+                                <small class="text-muted">e.g., 30 days = 1 month</small>
+                                <span asp-validation-for="DurationDays" class="text-danger d-block"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Price" class="form-label fw-semibold">
+                                    Price (EGP) <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Price" type="number" step="0.01" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Description" class="form-label fw-semibold">
+                                    Description <span class="text-danger">*</span>
+                                </label>
+                                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline">
+                                <i class="bi bi-arrow-left me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-fill">
+                                <i class="bi bi-check-lg me-1"></i>Update Plan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

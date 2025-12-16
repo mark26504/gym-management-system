@@ -1,0 +1,88 @@
+﻿@model IEnumerable<MembershipViewModel>
+
+@{
+    ViewData["Title"] = "Active Memberships";
+}
+
+<div class="container-fluid">
+    <header class="bg-primary text-white rounded-3 p-4 shadow-sm mt-5 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="mb-1 fw-semibold">Active Memberships</h2>
+                <p class="mb-0 text-light opacity-75">Members That have Active Plans</p>
+            </div>
+            <div class="col text-end">
+                <a asp-action="Create" class="btn btn-light">
+                    <i class="fas fa-plus"></i> New Membership
+                </a>
+            </div>
+        </div>
+    </header>
+
+    @if (TempData["SuccessMessage"] is not null)
+    {
+        <div id="Alert" class="alert alert-success alert-dismissible fade show">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] is not null)
+    {
+        <div id="Alert" class="alert alert-danger alert-dismissible fade show">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+
+    @if (Model.Any())
+    {
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Member</th>
+                            <th>Plan</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MemberName</td>
+                                <td>@item.PlanName</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <form method="post" asp-action="Cancel" class="m-0">
+                                            <input type="hidden" name="id" value="@item.MemberId" />
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-times"></i> Cancel
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center my-5">
+            <i class="fas fa-info-circle fa-3x text-muted mb-3"></i>
+            <h4 class="text-muted"> No Active Memberships Found</h4>
+        </div>
+    }
+
+</div>

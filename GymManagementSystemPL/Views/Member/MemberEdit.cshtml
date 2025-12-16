@@ -1,0 +1,80 @@
+﻿@model UpdateMemberViewModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-details border-0 p-2 shadow">
+                <div class="card-body text-center">
+                    <div class="text-center mt-3">
+                        <img src="~/images/@Model.Photo" alt="@Model.Name" class="rounded-circle"
+                             style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #fff; margin-top: -60px;" />
+                    </div>
+                    <div class="card-body text-center">
+                        <h2 class="mb-1 text-primary-color">@Model.Name</h2>
+
+                        <form method="post">
+                            <input hidden readonly asp-for="Name" />
+                            <input hidden readonly asp-for="Photo" />
+                            <div class="mt-4 text-start">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="p-3 bg-light rounded">
+                                            <small class="text-muted d-block mb-1">Email</small>
+                                            <input asp-for="Email" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-3 bg-light rounded">
+                                            <small class="text-muted d-block mb-1">Phone</small>
+                                            <input asp-for="Phone" class="form-control" />
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="p-3 bg-light rounded">
+                                            <small class="text-muted d-block mb-1">Building Number</small>
+                                            <input asp-for="BuildingNumber" class="form-control" />
+                                            <span asp-validation-for="BuildingNumber"
+                                                  class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-3 bg-light rounded">
+                                            <small class="text-muted d-block mb-1">City</small>
+                                            <input asp-for="City" class="form-control" />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-3 bg-light rounded">
+                                            <small class="text-muted d-block mb-1">Street</small>
+                                            <input asp-for="Street" class="form-control" />
+                                            <span asp-validation-for="Street" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="d-flex justify-content-between gap-2 mt-3 px-3 pb-3">
+                                <a asp-controller="Member" asp-action="Index" class="btn btn-fill ">
+                                    Back to
+                                    List
+                                </a>
+                                <button type="submit" class="btn btn-fill ">Done</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts 
+{
+    <partial name="_ValidationScriptsPartial" />
+}

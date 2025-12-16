@@ -1,0 +1,87 @@
+﻿@model UpdateTrainerViewModel
+
+<div class="container mt-4">
+    <header class="mb-4">
+        <h3 class="text-primary-color">Edit Trainer</h3>
+        <p class="text-muted">Update trainer information</p>
+    </header>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="mb-4 pb-3 border-bottom">
+                        <small class="text-muted d-block mb-1">Editing Profile For</small>
+                        <h4 class="mb-0 text-black">@Model.Name</h4>
+                    </div>
+                    <form asp-action="EditTrainer" method="post">
+                        <input asp-for="Name" hidden />
+                        <!-- Personal Information -->
+                        <div class="section-header mb-3">
+                            <h5 class="text-primary fw-bold">Personal Information</h5>
+                            <hr class="mt-2">
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label"></label>
+                                <input asp-for="Email" type="text" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Phone" class="form-label"></label>
+                                <input asp-for="Phone" type="text" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="BuildingNumber" class="form-label"></label>
+                                <input asp-for="BuildingNumber" name="BuildingNumber" type="text" class="form-control" />
+                                <span asp-validation-for="BuildingNumber" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Street" class="form-label"></label>
+                                <input asp-for="Street" name="Street" type="text" class="form-control" />
+                                <span asp-validation-for="Street" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="City" class="form-label"></label>
+                                <input asp-for="City" name="City" type="text" class="form-control" />
+                                <span asp-validation-for="City" class="text-danger"></span>
+
+                            </div>
+                        </div>
+
+                        <!-- Professional Information -->
+                        <div class="section-header mb-3">
+                            <h5 class="text-primary fw-bold">Professional Information</h5>
+                            <hr class="mt-2">
+                        </div>
+                        <div class="row g-3">
+                            <label asp-for="Specialization" class="form-label"></label>
+                            <select asp-for="Specialization" asp-items="Html.GetEnumSelectList<Specialties>()" class="form-select">
+                                <option value="">-- Select Specialization --</option>
+                            </select>
+                            <span asp-validation-for="Specialization" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline">
+                                <i class="bi bi-arrow-left me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-fill">
+                                <i class="bi bi-check-lg me-1"></i>Update Trainer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
