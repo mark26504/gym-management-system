@@ -49,13 +49,13 @@ The project follows a clean **Layered Architecture**:
 
 ## 📸 Screenshots
 
-### 🏠 Dashboard
-![Admin Dashboard](docs/screenshots/dashboard.png)
+### 🔐 Login
+![Admin Login](docs/screenshots/login.png)
 
 ---
 
-### 🔐 Login
-![Admin Login](docs/screenshots/login.png)
+### 🏠 Dashboard
+![Admin Dashboard](docs/screenshots/dashboard.png)
 
 ---
 
