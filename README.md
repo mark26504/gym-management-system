@@ -49,12 +49,12 @@ The project follows a clean **Layered Architecture**:
 
 ## 📸 Screenshots
 
-### 🏠 Admin Dashboard
+### 🏠 Dashboard
 ![Admin Dashboard](docs/screenshots/dashboard.png)
 
 ---
 
-### 🔐 Admin Login
+### 🔐 Login
 ![Admin Login](docs/screenshots/login.png)
 
 ---
@@ -64,7 +64,7 @@ The project follows a clean **Layered Architecture**:
 
 ---
 
-### 🏋️ Training Sessions
+### 🏋️ Sessions
 ![Training Sessions](docs/screenshots/sessions.png)
 
 ---
