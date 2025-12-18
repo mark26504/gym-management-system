@@ -81,7 +81,7 @@ namespace GymManagementSystemPL.Controllers
         }
         #endregion
 
-        #region Edit Trainer
+        #region Edit Session
 
         public ActionResult Edit(int id)
         {

@@ -1,0 +1,96 @@
+﻿@model CreateNewUser
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-4">
+    <header class="mb-4">
+        <h3 class="text-primary-color">Add New Admin</h3>
+    </header>
+
+@Html.ValidationMessage("DataMissed", new { @class = "text-danger" })
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <form asp-action="Register" asp-controller="Account" method="post">
+                        <div class="row g-3">
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="col-md-6">
+                                <label asp-for="FirstName" class="form-label fw-semibold">
+                                    First Name <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="LastName" class="form-label fw-semibold">
+                                    Last Name <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label asp-for="Role" class="form-label">
+                                    Role <span class="text-danger">*</span>
+                                </label>
+                                <select asp-for="Role"
+                                        asp-items="Html.GetEnumSelectList<Role>()"
+                                        class="form-select">
+                                    <option value="">-- Select Role --</option>
+                                </select>
+                                <span asp-validation-for="Role" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Email" class="form-label fw-semibold">
+                                    Email <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Password" class="form-label fw-semibold">
+                                    Password <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="ConfirmPassword" class="form-label fw-semibold">
+                                    Confirm Password <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                            <a asp-action="Index"
+                               asp-controller="Account"
+                               class="btn btn-outline">
+                                <i class="bi bi-arrow-left me-1"></i> Cancel
+                            </a>
+
+                            <button type="submit" class="btn btn-fill">
+                                <i class="bi bi-check-lg me-1"></i> Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

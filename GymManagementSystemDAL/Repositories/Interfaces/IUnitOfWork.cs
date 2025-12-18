@@ -1,4 +1,5 @@
 ﻿using GymManagementSystemDAL.Entities.Inherited;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,6 @@ namespace GymManagementSystemDAL.Repositories.Interfaces
         public ISessionRepository SessionRepository { get;}
         public IMembershipRepository MembershipRepository { get; }
         public IBookingRepository BookingRepository { get; }
+        public IDbContextTransaction BeginTransaction();
     }
 }

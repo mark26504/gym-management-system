@@ -582,9 +582,17 @@ footer .footer-content .location p {
     -webkit-text-fill-color: var(--primary-color); /* fix Chrome text rendering */
 }
 
-    .explore-more:hover {
-        background-color: var(--primary-color);
-        color: #fff;
-        border-color: var(--primary-color);
-        -webkit-text-fill-color: #fff; /* ensures text stays visible on hover */
-    }
+.explore-more:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    -webkit-text-fill-color: #fff; /* ensures text stays visible on hover */
+}
+
+.dropdown-menu .nav-link:hover,
+.dropdown-menu .dropdown-item:hover {
+    color: #fff !important;
+    background-color: var(--primary-color) !important;
+    border-radius: 19px; 
+    transition: color var(--main-duration), background-color var(--main-duration);
+}

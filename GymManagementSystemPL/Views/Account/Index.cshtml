@@ -1,0 +1,98 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{
+    ViewData["Title"] = "Admins";
+}
+
+@if (TempData["SuccessMessage"] is not null)
+{
+    <div id="Alert" class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] is not null)
+{
+    <div id="Alert" class="alert alert-danger alert-dismissible fade show">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="container">
+    <header class="d-flex justify-content-between mt-5 mb-4 align-items-center">
+        <div>
+            <h2 class="text-primary-color mb-0">Admins</h2>
+            <p class="text-muted">Users who have access to the system</p>
+        </div>
+
+        <div>
+            <a class="btn btn-fill fw-medium rounded-pill px-3 py-3"
+               asp-action="Register">
+                + Add New Admin
+            </a>
+        </div>
+    </header>
+
+    @if (Model is not null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var user in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 plan-card">
+                        <div class="card-header text-white text-center py-4 bg-primary-color">
+                            <h4 class="mb-0">@user.FullName</h4>
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <div class="mb-3">
+                                <p class="text-muted mb-2">
+                                    <i class="bi bi-calendar-check text-primary-color me-2"></i>
+                                    <strong>Email:</strong> @user.Email
+                                </p>
+
+                                <p class="text-muted mb-3">
+                                    <i class="bi bi-file-text text-primary-color me-2"></i>
+                                    <strong>Role:</strong> @user.Role
+                                </p>
+                            </div>
+
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-center gap-1">
+                                    <form method="post"
+                                          asp-controller="Account"
+                                          asp-action="Delete"
+                                          asp-route-id="@user.UserId"
+                                          class="m-0">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete this admin?');">
+                                            <i class="fas fa-times"></i> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-inbox display-1 text-muted"></i>
+            <h4 class="mt-3 text-muted">No admins found</h4>
+        </div>
+    }
+</div>
+
+@section Scripts
+{
+    <partial name="AlertViewScripts" />
+}
