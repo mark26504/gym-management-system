@@ -46,7 +46,7 @@ namespace GymManagementSystemPL.Controllers
             }
             else
             {
-                TempData["ErrorMessage"] = "Failed to create booking.";
+                TempData["ErrorMessage"] = "Booking failed. Member must have an active membership.";
             }
 
             return RedirectToAction(nameof(GetMembersForUpcomingSession), new { id = model.SessionId});
