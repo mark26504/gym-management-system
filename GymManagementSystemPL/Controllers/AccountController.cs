@@ -69,7 +69,7 @@ namespace GymManagementSystemPL.Controllers
         }
         #endregion
 
-        #region Admins
+        #region Super Admins
 
         [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Index()

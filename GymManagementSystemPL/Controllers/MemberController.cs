@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GymManagementSystemPL.Controllers
 {
+    [Authorize]
     public class MemberController : Controller
     {
         private readonly IMemberServices _memberServices;

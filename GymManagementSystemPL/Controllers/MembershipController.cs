@@ -1,10 +1,12 @@
 ﻿using GymManagementSystemBLL.Services.Interfaces;
 using GymManagementSystemBLL.ViewModels.MembershipsViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GymManagementSystemPL.Controllers
 {
+    [Authorize]
     public class MembershipController(IMembershipServices _membershipServices) : Controller
     {
         public IActionResult Index()
